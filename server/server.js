@@ -110,6 +110,7 @@ const renderError = err => {
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
+      // 500 server error.
       return res.status(500).end(renderError(err));
     }
 
