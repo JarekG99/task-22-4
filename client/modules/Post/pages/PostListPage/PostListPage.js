@@ -6,7 +6,8 @@ import PostList from '../../components/PostList';
 import PostCreateWidget from '../../components/PostCreateWidget/PostCreateWidget';
 
 // Import Actions
-import { addPostRequest, fetchPosts, deletePostRequest } from '../../PostActions';
+import { addPostRequest, fetchPosts, deletePostRequest, editThumbUpRequest,
+        editThumbDownRequest } from '../../PostActions';
 import { toggleAddPost } from '../../../App/AppActions';
 
 // Import Selectors
@@ -24,9 +25,17 @@ class PostListPage extends Component {
     }
   };
 
-  handleAddPost = (name, title, content) => {
+  handleAddPost = (name, title, content, votes) => {
     this.props.dispatch(toggleAddPost());
-    this.props.dispatch(addPostRequest({ name, title, content }));
+    this.props.dispatch(addPostRequest({ name, title, content, votes }));
+  };
+
+  handleThumbUp = (cuid) => {
+    this.props.dispatch(editThumbUpRequest(cuid));
+  };
+
+  handleThumbDown = (cuid) => {
+    this.props.dispatch(editThumbDownRequest(cuid));
   };
 
   render() {
@@ -55,6 +64,7 @@ PostListPage.propTypes = {
     name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
+    votes: PropTypes.number,
   })).isRequired,
   showAddPost: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,

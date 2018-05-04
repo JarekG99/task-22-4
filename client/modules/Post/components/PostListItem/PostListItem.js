@@ -15,7 +15,12 @@ function PostListItem(props) {
       </h3>
       <p className={styles['author-name']}><FormattedMessage id="by" /> {props.post.name}</p>
       <p className={styles['post-desc']}>{props.post.content}</p>
-      <p className={styles['post-action']}><a href="#" onClick={props.onDelete}><FormattedMessage id="deletePost" /></a></p>
+      <div className={styles['post-action']}>
+        <a className={styles['add-action-button']} href="#" onClick={props.onDelete}><FormattedMessage id="deletePost" /></a>
+        <a className={styles['add-action-button']} href="#" onClick={props.onThumbUp}>Thumb Up</a>
+        <a className={styles['add-action-button']} href="#" onClick={props.onThumbDown}>Thumb Down</a>
+        <a href="#" className={styles['votes-counter']}>Votes: {props.post.votes} </a>
+      </div>
       <hr className={styles.divider} />
     </div>
   );
@@ -28,6 +33,7 @@ PostListItem.propTypes = {
     content: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
+    // votes: PropTypes.number.isRequired,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
 };
