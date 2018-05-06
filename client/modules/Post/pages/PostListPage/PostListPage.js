@@ -30,19 +30,19 @@ class PostListPage extends Component {
     this.props.dispatch(addPostRequest({ name, title, content, votes }));
   };
 
-  handleThumbUp = (cuid) => {
-    this.props.dispatch(editThumbUpRequest(cuid));
+  handleThumbUp = (cuid, post) => {
+    this.props.dispatch(editThumbUpRequest(cuid, post));
   };
 
-  handleThumbDown = (cuid) => {
-    this.props.dispatch(editThumbDownRequest(cuid));
+  handleThumbDown = (cuid, post) => {
+    this.props.dispatch(editThumbDownRequest(cuid, post));
   };
 
   render() {
     return (
       <div>
         <PostCreateWidget addPost={this.handleAddPost} showAddPost={this.props.showAddPost} />
-        <PostList handleDeletePost={this.handleDeletePost} posts={this.props.posts} />
+        <PostList handleThumbUp={this.handleThumbUp} handleThumbUp={this.handleThumbDown} handleDeletePost={this.handleDeletePost} posts={this.props.posts} />
       </div>
     );
   }

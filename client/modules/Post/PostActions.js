@@ -16,17 +16,19 @@ export function addPost(post) {
   };
 }
 
-export function thumbUp(cuid) {
+export function thumbUp(cuid, post) {
   return {
     type: THUMB_UP,
     cuid,
+    post,
   };
 }
 
-export function thumbDown(cuid) {
+export function thumbDown(cuid, post) {
   return {
     type: THUMB_DOWN,
     cuid,
+    post
   };
 }
 export function addPostRequest(post) {
@@ -57,7 +59,7 @@ export function fetchPosts() {
   };
 }
 
-export function editThumbUpRequest(cuid, post) {
+export function editThumbUpRequest(cuid, post) { console.log(post);
   return (dispatch) => {
     return callApi(`posts/${cuid}`, 'put', {
       post: {
