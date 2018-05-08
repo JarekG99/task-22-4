@@ -15,7 +15,7 @@ import { getPost } from '../../PostReducer';
 
 export class PostDetailPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       name: this.props.post.name,
       title: this.props.post.title,
@@ -63,11 +63,11 @@ export class PostDetailPage extends React.Component {
     return (
       <div>
         <Helmet title={this.props.post.title} />
-        <a className=
-          {styles['edit-post-button']}
-           href="#"
-           onClick={this.props.toggleEditPost}>
-           <FormattedMessage id="editPost" />
+        <a
+          className={styles['edit-post-button']}
+          href="#"
+          onClick={this.props.toggleEditPost}>
+          <FormattedMessage id="EditPost" />
         </a>
         {
           this.props.showEditPost
@@ -77,7 +77,7 @@ export class PostDetailPage extends React.Component {
       </div>
       );
     }
-}
+  }
 // Actions required to provide data for this component to render in server side.
 PostDetailPage.need = [params => {
   return fetchPost(params.cuid);
@@ -105,7 +105,7 @@ PostDetailPage.propTypes = {
     content: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
+    votes: PropTypes.number.isRequired
   }).isRequired,
   intl: PropTypes.shape({
     messages: PropTypes.shape({
@@ -114,7 +114,7 @@ PostDetailPage.propTypes = {
       postContent: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-  showEditPost: PropTypes.bool.isRequired,
+  showEditPost: PropTypes.bool,
   toggleEditPost: PropTypes.func.isRequired,
   editPostRequest: PropTypes.func.isRequired,
 };
